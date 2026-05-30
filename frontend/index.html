@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MoodFilms — Find Your Film</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Cinematic background grain overlay -->
+  <div class="grain"></div>
+
+  <div id="app">
+
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <header class="site-header">
+      <div class="logo">MoodFilms</div>
+      <div class="tagline">Cinema for every state of mind</div>
+    </header>
+
+    <!-- ── Step 1: Industry ────────────────────────────────── -->
+    <section id="step-industry" class="step active">
+      <div class="step-inner">
+        <p class="step-label">01 — Select your cinema</p>
+        <h2 class="step-title">Which film world are you in?</h2>
+        <div class="industry-options">
+          <button class="industry-btn active" data-value="Hollywood">Hollywood</button>
+          <button class="industry-btn" data-value="Bollywood">Bollywood</button>
+          <button class="industry-btn" data-value="Other">International</button>
+        </div>
+        <button class="btn-next" id="to-step-query">Continue</button>
+      </div>
+    </section>
+
+    <!-- ── Step 2: Core Query ──────────────────────────────── -->
+    <section id="step-query" class="step">
+      <div class="step-inner">
+        <p class="step-label">02 — Tell me what you want</p>
+        <h2 class="step-title">What do you feel like watching?</h2>
+
+        <div class="search-wrap">
+          <input id="query-input" class="search-input" type="text"
+            placeholder="A movie name, a mood, a theme..." autocomplete="off" />
+          <button id="search-btn" class="btn-search">Find Films</button>
+        </div>
+
+        <div class="quick-label">Or pick one to start</div>
+        <div id="quick-picks" class="quick-row"></div>
+
+        <div class="divider-row">
+          <span class="divider-line"></span>
+          <span class="divider-text">Not sure what you want?</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <div class="fallback-row">
+          <button id="btn-not-sure" class="btn-ghost">What did you last enjoy?</button>
+          <button id="btn-random" class="btn-ghost">Surprise me</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 3: Not Sure (Fallback 1) ──────────────────── -->
+    <section id="step-fallback" class="step">
+      <div class="step-inner">
+        <p class="step-label">03 — Trace your taste</p>
+        <h2 class="step-title">What movie or series did you love most recently?</h2>
+
+        <div class="search-wrap">
+          <input id="fallback-input" class="search-input" type="text"
+            placeholder="e.g. Interstellar, Breaking Bad..." autocomplete="off" />
+          <button id="fallback-btn" class="btn-search">Find Similar</button>
+        </div>
+
+        <div class="divider-row">
+          <span class="divider-line"></span>
+          <span class="divider-text">Can't remember either?</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <button id="btn-show-mood" class="btn-ghost">Let my mood decide</button>
+        <button id="back-to-query" class="btn-back">Back</button>
+      </div>
+    </section>
+
+    <!-- ── Step 4: Mood ────────────────────────────────────── -->
+    <section id="step-mood" class="step">
+      <div class="step-inner">
+        <p class="step-label">04 — Emotional compass</p>
+        <h2 class="step-title">What is your mood right now?</h2>
+
+        <div class="mood-grid">
+          <button class="mood-btn" data-mood="Melancholic">
+            <span class="mood-icon">&#9670;</span>
+            <span>Melancholic</span>
+          </button>
+          <button class="mood-btn" data-mood="Thrilled">
+            <span class="mood-icon">&#9670;</span>
+            <span>Thrilled</span>
+          </button>
+          <button class="mood-btn" data-mood="Adventurous">
+            <span class="mood-icon">&#9670;</span>
+            <span>Adventurous</span>
+          </button>
+          <button class="mood-btn" data-mood="Thoughtful">
+            <span class="mood-icon">&#9670;</span>
+            <span>Thoughtful</span>
+          </button>
+          <button class="mood-btn" data-mood="Romantic">
+            <span class="mood-icon">&#9670;</span>
+            <span>Romantic</span>
+          </button>
+          <button class="mood-btn" data-mood="Funny">
+            <span class="mood-icon">&#9670;</span>
+            <span>Funny</span>
+          </button>
+        </div>
+
+        <button id="back-to-fallback" class="btn-back">Back</button>
+      </div>
+    </section>
+
+    <!-- ── Results ─────────────────────────────────────────── -->
+    <section id="step-results" class="step">
+      <div class="results-header">
+        <button id="back-to-main" class="btn-back">New Search</button>
+        <h2 id="results-title" class="results-heading"></h2>
+      </div>
+      <div id="error-msg" class="error-msg hidden"></div>
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Finding your films...</p>
+      </div>
+      <div id="results-grid" class="results-grid"></div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
